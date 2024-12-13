@@ -1,35 +1,50 @@
 const fs = require('node:fs');
 
-function firstPart(data){
-    const re = /XMAS/g;
+function firstPart(data) {
+    const word = "XMAS";
+    const reversedWord = "SAMX";
+    const re = new RegExp(word, "g");
+    const resersedRe = new RegExp(reversedWord, "g");
 
-    let reversedData = reverse(data);
-    let reversedHorizontalMachedData = reversedData.match(re);
-
-    let verticalData = data.split('\n');
-
-    for(let column = 0;column <= verticalData.)
-    let horizontalMachedData = data.match(re);
+    let totalMatches = 0;
     
-    let count = 0;
-    for(let i in horizontalMachedData){
-        count += 1;
+    totalMatches += matchData(data, re);
+    totalMatches += matchData(data, resersedRe);
+    totalMatches += matchData(w(data), re);
+    totalMatches += matchData(w(data), resersedRe);
+    console.log(totalMatches);
+
+    boba(data);
+}
+function w(data){
+    const formedData = data.split("\n");
+    let newData = ""
+    //console.log(formedData)
+    for(let x = 0;x != formedData.length; x++){
+        for(let y = 0; y != formedData[x].length; y++){
+            newData += formedData[y][x];
+        }
+        newData += "\n"
     }
-    for(let i in reversedHorizontalMachedData){
-        count += 1;
-    }
-    console.log(count);
-    console.log(verticalData)
+    return newData;
 }
 
-function reverse(s){
-    return s.split("").reverse().join("");
+function matchData(data, redex) {
+    const countOfMatchedData = data.match(redex).length;
+    return countOfMatchedData;
+}
+
+function boba(data){
+    const formedData = data.split("\n");
+    for(let i = 0; i != formedData.length; i++){
+
+    }
+    console.log(formedData.length)
 }
 
 try {
     const data = fs.readFileSync('./input4.txt', 'utf8');
-    firstPart(data)
-    
+    firstPart(data);
 } catch (err) {
     console.error(err);
 }
